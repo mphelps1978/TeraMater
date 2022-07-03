@@ -2,7 +2,9 @@ const { GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLString } = requir
 const usersType = require('../schemas/users.schema')
 const Users = require('../models/users')
 
-// Get User List
+// QUERIES
+
+// Get all Users
 const userQueries = new GraphQLObjectType({
   name: 'getUsers',
   fields: {
@@ -17,23 +19,28 @@ const userQueries = new GraphQLObjectType({
 })
 
 
+
+
+
+//MUTATIONS
+
 // Add a User
-// const userMutations = new GraphQLObjectType({
-//   name: 'Mutation',
-//   fields: {
-//     addUser: {
-//       type: userType,
-//       args: {
-//         userName: {type: GraphQLNonNull(GraphQLString)},
-//         email: {type: GraphQLNonNull(GraphQLString)},
-//         password: { type: GraphQLNonNull(GraphQLString) },
-//       }
-//     }
-//   }
-// })
+const userMutations = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addUser: {
+      type: userType,
+      args: {
+        userName: {type: GraphQLNonNull(GraphQLString)},
+        email: {type: GraphQLNonNull(GraphQLString)},
+        password: { type: GraphQLNonNull(GraphQLString) },
+      }
+    }
+  }
+})
 
 
 module.exports = {
   userQueries,
-  // userMutations
+  userMutations
 }
